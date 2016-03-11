@@ -1,0 +1,22 @@
+version: "2"
+services:
+  beanstalkd:
+    build:
+      context: .
+    image: augustash/beanstalkd
+    ports:
+      - "11300:11300"
+    volumes_from:
+      - beanstalk_data
+    environment:
+      - SKIP_UPDATE=true
+      - PUID=501
+      - PGID=501
+
+  beanstalk_data:
+    image: augustash/storage
+    volumes:
+      - beanstalk-data:/var/lib/beanstalkd
+
+volumes:
+  beanstalk-data: {}

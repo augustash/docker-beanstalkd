@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Set permissions on volume
+chown -R ash:ash /var/lib/beanstalkd
+
+exec /sbin/setuser ash /usr/bin/beanstalkd -l $BEANSTALKD_LISTEN_ADDR -p $BEANSTALKD_LISTEN_PORT $BEANSTALKD_EXTRA
